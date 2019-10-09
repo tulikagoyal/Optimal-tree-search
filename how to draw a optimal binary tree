@@ -1,22 +1,25 @@
-how to draw a optimal binary search tree with given frequencies of visit of every key
-#include <iostream>
+Given a sorted array keys[0.. n-1] of search keys and an array freq[0.. n-1] of frequency counts, where freq[i] is the number of searches to keys[i]. Construct a binary search tree of all keys such that the total cost of all the searches is as small as possible.
+Let us first define the cost of a BST. The cost of a BST node is level of that node multiplied by its frequency. Level of root is 1
+
+SOLUTION I
+#include <bits/stdc++.h>
 using namespace std;
-int mincost(vector<int> &keys, vector<int> freq){
-    int n=keys.size()
+int mincost(int keys[], int freq[]){
+    int n=5;
     int T[n][n];
     for(int i=0;i<n;i++){
         T[i][i]=freq[i]; //for length =1
     }
     for(int len=2;len<=n;len++){
         for(int i=0;i<n;i++){
-            int j=i+l-1;
+            int j=i+len-1;
             int sum=0;
             for(int x=i;x<=j;x++){
                 sum +=T[x][x];
             }
             T[i][j] = INT_MAX;
             
-            for(root=i;root<=j;root++){
+            for(int root=i;root<=j;root++){
                 int val;
                 val=sum+(root-1<i?0:T[i][root-1])+(root+1>j?0:T[root+1][j]);
                 if(val<T[i][j]){
