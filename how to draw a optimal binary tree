@@ -1,0 +1,35 @@
+how to draw a optimal binary search tree with given frequencies of visit of every key
+#include <iostream>
+using namespace std;
+int mincost(vector<int> &keys, vector<int> freq){
+    int n=keys.size()
+    int T[n][n];
+    for(int i=0;i<n;i++){
+        T[i][i]=freq[i]; //for length =1
+    }
+    for(int len=2;len<=n;len++){
+        for(int i=0;i<n;i++){
+            int j=i+l-1;
+            int sum=0;
+            for(int x=i;x<=j;x++){
+                sum +=T[x][x];
+            }
+            T[i][j] = INT_MAX;
+            
+            for(root=i;root<=j;root++){
+                int val;
+                val=sum+(root-1<i?0:T[i][root-1])+(root+1>j?0:T[root+1][j]);
+                if(val<T[i][j]){
+                    T[i][j]=val;
+                }
+            }
+        }
+    }
+    return T[0][n-1];
+}
+int main(){
+    int key[]={10,12,20,35,46};
+    int freq[]={34,8,50,21,16};
+    int result=mincost(key,freq);
+    cout<<result;
+}
